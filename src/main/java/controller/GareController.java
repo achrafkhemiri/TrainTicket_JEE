@@ -23,7 +23,10 @@ public class GareController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Gare gare = new Gare();
+        String nom = request.getParameter("nom");
+        String ville = request.getParameter("ville");
+
+        Gare gare = new Gare(nom, ville);
         gareDAO.create(gare);
         response.sendRedirect("/GareController");
     }
