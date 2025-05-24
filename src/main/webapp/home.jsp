@@ -6,34 +6,33 @@
     <link rel="stylesheet" href="Styles/styleHome.css">
 </head>
 <body>
-    <jsp:include page="Header.jsp"/>
 
-    <div class="container">
-        <h2>Rechercher un trajet</h2>
+<jsp:include page="Header.jsp"/>
 
-        <form action="recherche" method="get">
-            <div>
-                <label for="date">Date du voyage :</label>
-                <input type="date" name="date" required>
-            </div>
+<div class="container">
+    <h2>Rechercher un trajet</h2>
 
-            <div>
-                <label for="villeDepart">Ville de départ :</label>
-                <input type="text" name="villeDepart" placeholder="Ex: Tunis" required>
-            </div>
+    <form action="${pageContext.request.contextPath}/RechVoyage" method="get">
+        <div>
+            <label for="date"><i class="fas fa-calendar-day"></i> Date du voyage</label>
+            <input type="date" name="date" required>
+        </div>
 
-            <div>
-                <label for="villeArrivee">Ville d’arrivée :</label>
-                <input type="text" name="villeArrivee" placeholder="Ex: Sfax" required>
-            </div>
+        <div>
+            <label for="villeDepart"><i class="fas fa-map-marker-alt"></i> Ville de départ</label>
+            <input type="text" name="villeDepart" placeholder="Ex: Tunis" required>
+        </div>
 
-            <input type="submit" value="Rechercher">
-        </form>
+        <div>
+            <label for="villeArrivee"><i class="fas fa-location-arrow"></i> Ville d’arrivée</label>
+            <input type="text" name="villeArrivee" placeholder="Ex: Sfax" required>
+        </div>
 
-       
+        <input type="submit" value="Rechercher">
+    </form>
+</div>
 
-    </div>
+<jsp:include page="Footer.jsp"/>
 
-    <jsp:include page="Footer.jsp"/>
 </body>
 </html>

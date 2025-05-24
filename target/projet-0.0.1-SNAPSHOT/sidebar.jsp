@@ -7,6 +7,7 @@
   <ul class="sidebar-menu">
     <li><a href="${pageContext.request.contextPath}/GareController"><i class="fas fa-train"></i><span>Gares</span></a></li>
     <li><a href="${pageContext.request.contextPath}/addTrain"><i class="fas fa-subway"></i><span>Trains</span></a></li>
+ <li><a href="${pageContext.request.contextPath}/TrajetController"><i class="fas fa-route"></i><span>Trajets</span></a></li>
  
   </ul>
 </div>

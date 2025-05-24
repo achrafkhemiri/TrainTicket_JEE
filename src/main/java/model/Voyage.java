@@ -73,6 +73,10 @@ public class Voyage {
 		this.prixVoyage = prixVoyage;
 		this.nbPlacesDispo = nbPlacesDispo;
 	}
+	public Voyage() { 
+	}
+	
+	
     
     
 }

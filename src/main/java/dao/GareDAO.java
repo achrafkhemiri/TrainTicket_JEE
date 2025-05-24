@@ -91,4 +91,13 @@ public class GareDAO {
         }
         return success;
     }
+    public Gare findByVille(String ville) {
+        Session session = sessionFactory.openSession();
+        Gare gare = session.createQuery("from Gare where ville = :ville", Gare.class)
+            .setParameter("ville", ville)
+            .setMaxResults(1)
+            .uniqueResult();
+        session.close();
+        return gare;
+    }
 }

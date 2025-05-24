@@ -24,5 +24,6 @@
         <mapping class="model.Gare"/>
         <mapping class="model.Train"/>
         <mapping class="model.Paiement"/> 
+          <mapping class="model.Voyage"/> 
     </session-factory>
 </hibernate-configuration>

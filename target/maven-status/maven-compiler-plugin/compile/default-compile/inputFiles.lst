@@ -19,11 +19,14 @@ C:\Users\LENOVO\Desktop\iit\2GLID\Sem2\JEE\projet\src\main\java\dao\GareDAO.java
 C:\Users\LENOVO\Desktop\iit\2GLID\Sem2\JEE\projet\src\main\java\dao\ReservationDAO.java
 C:\Users\LENOVO\Desktop\iit\2GLID\Sem2\JEE\projet\src\main\java\TestHibernate.java
 C:\Users\LENOVO\Desktop\iit\2GLID\Sem2\JEE\projet\src\main\java\model\Paiement.java
+C:\Users\LENOVO\Desktop\iit\2GLID\Sem2\JEE\projet\src\main\java\model\Voyage.java
 C:\Users\LENOVO\Desktop\iit\2GLID\Sem2\JEE\projet\src\main\java\controller\UtilisateurController.java
 C:\Users\LENOVO\Desktop\iit\2GLID\Sem2\JEE\projet\src\main\java\util\HibernateUtil.java
 C:\Users\LENOVO\Desktop\iit\2GLID\Sem2\JEE\projet\src\main\java\model\Reservation.java
+C:\Users\LENOVO\Desktop\iit\2GLID\Sem2\JEE\projet\src\main\java\controller\RechVoyage.java
 C:\Users\LENOVO\Desktop\iit\2GLID\Sem2\JEE\projet\src\main\java\controller\GareController.java
 C:\Users\LENOVO\Desktop\iit\2GLID\Sem2\JEE\projet\src\main\java\controller\ClientController.java
+C:\Users\LENOVO\Desktop\iit\2GLID\Sem2\JEE\projet\src\main\java\dao\VoyageDAO.java
 C:\Users\LENOVO\Desktop\iit\2GLID\Sem2\JEE\projet\src\main\java\controller\TrainController.java
 C:\Users\LENOVO\Desktop\iit\2GLID\Sem2\JEE\projet\src\main\java\model\Billet.java
 C:\Users\LENOVO\Desktop\iit\2GLID\Sem2\JEE\projet\src\main\java\model\Train.java
