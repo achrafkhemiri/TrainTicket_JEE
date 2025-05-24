@@ -12,12 +12,19 @@ public class GareDAO {
     public GareDAO() {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
-    public Gare findById(long id) {
+    /*public Gare findById(long id) {
         Session session = sessionFactory.openSession();
         Gare gare = session.get(Gare.class, id);
         session.close();
         return gare;
+    } */
+    public Gare findById(int id) {
+        Session session = sessionFactory.openSession();
+        Gare gare = session.get(Gare.class, id);  
+        session.close();
+        return gare;
     }
+
     public boolean create(Gare gare) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
