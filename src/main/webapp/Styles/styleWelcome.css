@@ -1,0 +1,70 @@
+@charset "UTF-8";@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #f2f6fc, #e8f0fa);
+    color: #2c3e50;
+}
+
+.welcome-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 80px;
+    gap: 40px;
+}
+
+.welcome-text {
+    max-width: 600px;
+}
+
+.welcome-text h1 {
+    font-size: 2.5rem;
+    color: #34495e;
+}
+
+.welcome-text h1 span {
+    color: #3498db;
+}
+
+.welcome-text p {
+    font-size: 1.2rem;
+    margin: 20px 0 30px;
+    line-height: 1.6;
+}
+
+.btn-start {
+    background-color: #3498db;
+    color: white;
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-start:hover {
+    background-color: #2b7cb8;
+}
+
+.welcome-image img {
+    max-width: 700px;
+    width: 150%;
+    height: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .welcome-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .welcome-image {
+        margin-top: 30px;
+    }
+}

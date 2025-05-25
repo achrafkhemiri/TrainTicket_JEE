@@ -5,8 +5,7 @@
     <title>Réservation - Options</title>
     <link rel="stylesheet" href="Styles/styleRes.css">
 </head>
-<body>
-<jsp:include page="Header.jsp"/>
+<body> 
 
 <div class="container">
     <h2>Réserver votre trajet</h2>
@@ -39,6 +38,6 @@
     </form>
 </div>
 
-<jsp:include page="Footer.jsp"/>
+<jsp:include page="../Others/Footer.jsp"/>
 </body>
 </html>

@@ -22,7 +22,7 @@ public class ReservationController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Reservation> reservations = reservationDAO.findAll();
         request.setAttribute("listReservation", reservations);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/reservationView.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("ViewsClient/reservationView.jsp");
         rd.forward(request, response);
     }
 
@@ -44,6 +44,6 @@ public class ReservationController extends HttpServlet {
 */
         // save via DAO (ReservationDAO.create(res))
 
-        response.sendRedirect("confirmation.jsp");
+        response.sendRedirect("ViewsClient/confirmation.jsp");
     }
 }

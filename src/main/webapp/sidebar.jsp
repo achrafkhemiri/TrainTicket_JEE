@@ -3,7 +3,7 @@
 </head>
 
 <div class="sidebar">
-  <div class="sidebar-header">JEE</div>
+  <div class="sidebar-header">BilletExpress</div>
   <ul class="sidebar-menu">
     <li><a href="${pageContext.request.contextPath}/GareController"><i class="fas fa-train"></i><span>Gares</span></a></li>
     <li><a href="${pageContext.request.contextPath}/addTrain"><i class="fas fa-subway"></i><span>Trains</span></a></li>

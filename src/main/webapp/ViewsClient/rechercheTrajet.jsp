@@ -3,11 +3,10 @@
 <html>
 <head>
     <title>Résultats de recherche</title>
-    <link rel="stylesheet" href="Styles/styleRecherche.css">
+    <link rel="stylesheet" href="../Styles/styleRecherche.css">
 </head>
 <body>
-<jsp:include page="Header.jsp"/>
-
+ 
 <div class="container">
     <h2>Trajets disponibles</h2>
 
@@ -29,6 +28,6 @@
     </c:forEach>
 </div>
 
-<jsp:include page="Footer.jsp"/>
+<jsp:include page="../Others/Footer.jsp"/>
 </body>
 </html>

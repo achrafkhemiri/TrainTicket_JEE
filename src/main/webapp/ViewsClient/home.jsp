@@ -3,16 +3,19 @@
 <html>
 <head>
     <title>Accueil - Réservation de Billets</title>
-    <link rel="stylesheet" href="Styles/styleHome.css">
+    <link rel="stylesheet" href="../Styles/styleHomePage.css"> 
+    
 </head>
 <body>
-
-<jsp:include page="Header.jsp"/>
+ 
+<jsp:include page="navbar.jsp" />
 
 <div class="container">
     <h2>Rechercher un trajet</h2>
 
+     
     <form action="${pageContext.request.contextPath}/RechVoyage" method="get">
+    
         <div>
             <label for="date"><i class="fas fa-calendar-day"></i> Date du voyage</label>
             <input type="date" name="date" required>
@@ -30,9 +33,7 @@
 
         <input type="submit" value="Rechercher">
     </form>
-</div>
-
-<jsp:include page="Footer.jsp"/>
+</div> 
 
 </body>
 </html>

@@ -28,7 +28,7 @@ public class RechVoyage extends HttpServlet {
 	         String villeArrivee = request.getParameter("villeArrivee");
 	         LocalDate dateVoyage = LocalDate.parse(request.getParameter("date"));
 
-	         // Récupérer les gares par ville
+
 	         Gare depart = gareDAO.findByVille(villeDepart);
 	         Gare arrivee = gareDAO.findByVille(villeArrivee);
 
@@ -46,7 +46,7 @@ public class RechVoyage extends HttpServlet {
 	         request.setAttribute("depart", villeDepart);
 	         request.setAttribute("arrivee", villeArrivee);
 
-	        request.getRequestDispatcher("ResultatRech.jsp").forward(request, response);
+	        request.getRequestDispatcher("ViewsClient/ResultatRech.jsp").forward(request, response);
 	    }
 
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -64,7 +64,7 @@ public class RechVoyage extends HttpServlet {
 	        request.setAttribute("depart", depart.getVille());
 	        request.setAttribute("arrivee", arrivee.getVille());
 
-	        request.getRequestDispatcher("ResultatRech.jsp").forward(request, response);
+	        request.getRequestDispatcher("ViewsClient/ResultatRech.jsp").forward(request, response);
 	    }
 
 }
