@@ -14,12 +14,13 @@ public class TrajetDAO {
     public TrajetDAO() {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
-    public Gare findById(int id) {
+    public Trajet findById(int id) {
         Session session = sessionFactory.openSession();
-        Gare gare = session.get(Gare.class, id);
+        Trajet trajet = session.get(Trajet.class, id);
         session.close();
-        return gare;
+        return trajet;
     }
+
 
     /*  public List<Gare> findAll() {
         Session session = sessionFactory.openSession();
@@ -34,17 +35,21 @@ public class TrajetDAO {
         session.close();
         return trajet;
     }
-  public List<Trajet> findAll() {
+    
+    public List<Trajet> findAll() {
         Session session = sessionFactory.openSession();
         List<Trajet> result = session.createQuery(
                 "SELECT DISTINCT t FROM Trajet t " +
                 "LEFT JOIN FETCH t.depart " +
                 "LEFT JOIN FETCH t.arrivee " +
-                "LEFT JOIN FETCH t.garesDePassage", Trajet.class
-            ).getResultList();
+                "LEFT JOIN FETCH t.garesDePassage", // très important
+                Trajet.class
+        ).getResultList();
         session.close();
         return result;
     }
+    
+ 
     public boolean create(Trajet trajet) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;

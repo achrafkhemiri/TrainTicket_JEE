@@ -75,8 +75,16 @@ public class Voyage {
 	}
 	public Voyage() { 
 	}
-	
-	
+	public Voyage(LocalDate dateVoyage, LocalTime heureDepart, LocalTime heureArrivee, int nbPlacesDispo, double prixVoyage, Trajet trajet) {
+	    this.dateVoyage = dateVoyage;
+	    this.heureDepart = heureDepart;
+	    this.heureArrivee = heureArrivee;
+	    this.nbPlacesDispo = nbPlacesDispo;
+	    this.prixVoyage = prixVoyage;
+	    this.trajet = trajet;
+	}
+
+
     
     
 }

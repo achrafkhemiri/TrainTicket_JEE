@@ -1,3 +1,11 @@
+<%
+    model.Utilisateur user = (model.Utilisateur) session.getAttribute("utilisateur");
+    if (user == null || !"admin".equalsIgnoreCase(user.getRole())) {
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        return;
+    }
+%>
+
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
@@ -8,7 +16,12 @@
     <li><a href="${pageContext.request.contextPath}/GareController"><i class="fas fa-train"></i><span>Gares</span></a></li>
     <li><a href="${pageContext.request.contextPath}/addTrain"><i class="fas fa-subway"></i><span>Trains</span></a></li>
  <li><a href="${pageContext.request.contextPath}/TrajetController"><i class="fas fa-route"></i><span>Trajets</span></a></li>
+          <li><a href="${pageContext.request.contextPath}/VoyageController"><i class="fas fa-calendar-alt"></i> Voyages</a></li>
  
+     <li><a href="${pageContext.request.contextPath}/UtilisateurController"><i class="fas fa-users"></i><span>Utilisateurs</span></a></li>
+   <li><a href="${pageContext.request.contextPath}/LogoutController" class="logout-link">
+      <i class="fas fa-sign-out-alt"></i><span>Deconnexion</span>
+    </a></li>
   </ul>
 </div>
 
@@ -19,6 +32,9 @@
   --sidebar-accent: #3498db;  
   --text-light: #ecf0f1;
   --text-muted: #bdc3c7;
+  --logout-red: #e74c3c;
+--logout-red-hover: #c0392b;
+  
 }
 
 body {
@@ -26,6 +42,18 @@ body {
   padding: 0;
   font-family: 'Segoe UI', Tahoma, sans-serif;
 }
+.sidebar-menu li a.logout-link {
+  background-color: var(--logout-red);
+  color: white;
+  font-weight: 600;
+}
+
+.sidebar-menu li a.logout-link:hover {
+  background-color: var(--logout-red-hover);
+  color: white;
+  text-decoration: none;
+}
+
 
 .sidebar {
   width: 190px;
@@ -86,4 +114,5 @@ body {
 .sidebar-menu li a span {
   font-size: 1em;
 }
+
 </style>

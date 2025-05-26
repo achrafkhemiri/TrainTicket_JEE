@@ -26,7 +26,7 @@ public class TrainController extends HttpServlet {
             throws ServletException, IOException { 
         request.setAttribute("listTrain", trainDAO.findAll());
  
-        request.getRequestDispatcher("addTrain.jsp").forward(request, response);
+        request.getRequestDispatcher("ViewsAdmin/addTrain.jsp").forward(request, response);
     }
 
     @Override
@@ -44,6 +44,6 @@ public class TrainController extends HttpServlet {
         
         List<Train> trains = trainDAO.findAll();
         request.setAttribute("listTrain", trains);
-        request.getRequestDispatcher("addTrain.jsp").forward(request, response);
+        request.getRequestDispatcher("ViewsAdmin/addTrain.jsp").forward(request, response);
     }
 }

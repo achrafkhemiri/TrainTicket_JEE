@@ -37,8 +37,7 @@ public class RechVoyage extends HttpServlet {
 	             request.getRequestDispatcher("/WEB-INF/views/resultatsVoyage.jsp").forward(request, response);
 	             return;
 	         }
-
-	         // Chercher les voyages
+ 
 	         List<Voyage> voyages = voyageDAO.findByDateAndTrajet(dateVoyage, depart, arrivee);
 
 	         request.setAttribute("voyages", voyages);

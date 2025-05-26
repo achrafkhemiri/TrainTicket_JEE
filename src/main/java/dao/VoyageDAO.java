@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import model.Billet;
 import model.Gare;
@@ -17,12 +18,12 @@ public class VoyageDAO {
 	public List<Voyage> findAll() {
 	    Session session = sessionFactory.openSession();
 	    List<Voyage> voyages = session.createQuery(
-	        "SELECT DISTINCT v FROM Voyage v " +
-	        "JOIN FETCH v.trajet t " +
-	        "JOIN FETCH t.depart " +
-	        "JOIN FETCH t.arrivee " +
-	        "LEFT JOIN FETCH t.garesDePassage", Voyage.class
-	    ).getResultList();
+	    	    "SELECT DISTINCT v FROM Voyage v " +
+	    	    "JOIN FETCH v.trajet t " +
+	    	    "JOIN FETCH t.depart " +
+	    	    "JOIN FETCH t.arrivee " +
+	    	    "LEFT JOIN FETCH t.garesDePassage", Voyage.class
+	    	).getResultList();
 	    session.close();
 	    return voyages;
 	}
@@ -46,5 +47,11 @@ public class VoyageDAO {
 		session.close();
 		return voyages;
 	}
-
+	public void create(Voyage voyage) {
+	    Session session = sessionFactory.openSession();
+	    Transaction tx = session.beginTransaction();
+	    session.persist(voyage);
+	    tx.commit();
+	    session.close();
+	}
 }

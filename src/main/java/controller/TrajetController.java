@@ -27,7 +27,7 @@ public class TrajetController extends HttpServlet {
         List<Trajet> trajets = trajetDAO.findAll();
         request.setAttribute("gares", gares);
         request.setAttribute("listeTrajets", trajets);
-        request.getRequestDispatcher("addTrajet.jsp").forward(request, response);
+        request.getRequestDispatcher("ViewsAdmin/addTrajet.jsp").forward(request, response);
         }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

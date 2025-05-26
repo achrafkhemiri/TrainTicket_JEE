@@ -1,4 +1,4 @@
-package controller;
+/*package controller;
 
 import dao.ClientDAO;
 import dao.UtilisateurDAO;
@@ -37,4 +37,4 @@ public class ClientController extends HttpServlet {
         clientDAO.create(client);
         response.sendRedirect("/ClientController");
     }
-}
+}*/

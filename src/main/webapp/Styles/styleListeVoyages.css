@@ -37,6 +37,7 @@ h2 {
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 24px;
 }
+ 
 
 .voyage-card {
     background: white;
@@ -44,7 +45,11 @@ h2 {
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     padding: 24px;
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column; 
+    height: 100%;  
 }
+
 
 .voyage-card:hover {
     transform: translateY(-4px);
@@ -93,9 +98,10 @@ h2 {
 }
 
 .reservation-btn {
+    margin-top: auto;  
     text-align: right;
-    margin-top: 16px;
 }
+
 
 .reservation-btn input[type="submit"] {
     background-color: #3498db;
