@@ -17,7 +17,8 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
          <mapping class="model.Utilisateur"/>
-        <mapping class="model.Client"/>
+                
+         
         <mapping class="model.Admin"/>
         <mapping class="model.Billet"/> 
         <mapping class="model.Trajet"/>
@@ -25,5 +26,7 @@
         <mapping class="model.Train"/>
         <mapping class="model.Paiement"/> 
           <mapping class="model.Voyage"/> 
+          <mapping class="model.Reservation"/> 
+          
     </session-factory>
 </hibernate-configuration>

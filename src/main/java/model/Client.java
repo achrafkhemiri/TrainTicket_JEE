@@ -6,9 +6,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "client")
-public class Client extends Utilisateur {
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<Billet> historique = new ArrayList<>();
+public class Client  {
+    
+    @OneToOne
+    private Billet billet ;
 
-    // Getters and Setters
+
+
 }

@@ -83,7 +83,14 @@ public class Voyage {
 	    this.prixVoyage = prixVoyage;
 	    this.trajet = trajet;
 	}
+	@Override
+	public String toString() {
+		return "Voyage [id=" + id + ", trajet=" + trajet + ", dateVoyage=" + dateVoyage + ", heureDepart=" + heureDepart
+				+ ", heureArrivee=" + heureArrivee + ", prixVoyage=" + prixVoyage + ", nbPlacesDispo=" + nbPlacesDispo
+				+ "]";
+	}
 
+	
 
     
     

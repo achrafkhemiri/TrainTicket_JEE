@@ -16,12 +16,22 @@ public class BilletController extends HttpServlet {
     private BilletDAO bielletDAO = new BilletDAO();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Billet> billets = bielletDAO.findAll();
-        request.setAttribute("listBillets", billets);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/billetView.jsp");
-        rd.forward(request, response);
-    }
+        String action = request.getParameter("action");
 
+        if ("list".equals(action)) {
+            String reservationIdParam = request.getParameter("reservationId");
+            if (reservationIdParam != null) {
+                int reservationId = Integer.parseInt(reservationIdParam);
+                List<Billet> billets = bielletDAO.findByReservationIdWithDetails(reservationId);
+                request.setAttribute("billets", billets);
+
+                RequestDispatcher rd = request.getRequestDispatcher("ViewsClient/listeBillets.jsp");
+                rd.forward(request, response);
+            } else {
+                response.sendRedirect("ReservationController?action=mesReservations");
+            }
+        }
+    }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Billet billet = new Billet();
         bielletDAO.create(billet);

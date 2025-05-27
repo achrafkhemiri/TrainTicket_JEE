@@ -3,6 +3,8 @@ package dao;
 import model.Billet;
 import model.Client;
 import model.Reservation;
+import model.Utilisateur;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -39,12 +41,12 @@ public class ReservationDAO {
         return success;
     }
 
-    public boolean update(Long id, Billet billet, String statut) {
+    public boolean update(Long id, String statut) {
         Session session = sessionFactory.openSession();
         Reservation reservation = session.get(Reservation.class, id);
         boolean success = false;
         if (reservation != null) {
-            reservation.setBillet(billet);
+            //reservation.setBillet(billet);
 
             Transaction tx = null;
             try {
@@ -109,4 +111,19 @@ public class ReservationDAO {
         session.close();
         return reservation;
     }
+    
+    
+    
+    public List<Reservation> findByUtilisateur(Utilisateur utilisateur) {
+        Session session = sessionFactory.openSession();
+        List<Reservation> reservations = session.createQuery(
+            "from Reservation where utilisateur = :utilisateur", Reservation.class)
+            .setParameter("utilisateur", utilisateur)
+            .getResultList();
+        session.close();
+        return reservations;
+    }
+
+    
+    
 }

@@ -40,10 +40,13 @@
                     </div>
                 </c:if>
 
-                <form action="ReservationServlet" method="post" class="reservation-btn">
-                    <input type="hidden" name="voyageId" value="${v.id}">
-                    <input type="submit" value="Réserver">
-                </form>
+<form action="ReservationController" method="get" class="reservation-btn">
+    <input type="hidden" name="action" value="form">
+    <input type="hidden" name="voyageId" value="${v.id}">
+    <input type="submit" value="Réserver">
+</form>
+
+
             </div>
         </c:forEach>
     </div>

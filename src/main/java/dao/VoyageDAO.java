@@ -34,6 +34,15 @@ public class VoyageDAO {
 		session.close();
 		return voyage;
 	}
+	
+	
+	public Voyage findByIdd(int id) {
+	    Session session = sessionFactory.openSession();
+	    Voyage voyage = session.get(Voyage.class, id);
+	    session.close();
+	    return voyage;
+	}
+
 
 	public List<Voyage> findByDateAndTrajet(LocalDate date, Gare depart, Gare arrivee) {
 		Session session = sessionFactory.openSession();
@@ -54,4 +63,20 @@ public class VoyageDAO {
 	    tx.commit();
 	    session.close();
 	}
+	
+	public void update(Voyage voyage) {
+	    Transaction transaction = null;
+	    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+	        transaction = session.beginTransaction();
+	        session.update(voyage);
+	        transaction.commit();
+	    } catch (Exception e) {
+	        if (transaction != null) {
+	            transaction.rollback();
+	        }
+	        e.printStackTrace(); // Tu peux logger ou relancer selon ta gestion d'erreurs
+	    }
+	}
+
+	
 }

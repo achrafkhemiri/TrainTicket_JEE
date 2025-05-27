@@ -2,6 +2,7 @@ package dao;
 
 import model.Billet;
 import model.Client;
+import model.Reservation;
 import model.Trajet;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,7 +23,7 @@ public class BilletDAO {
         return billet;
     }
     public boolean create(Billet billet) {
-        Session session = sessionFactory.openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         boolean success = false;
         try {
@@ -50,8 +51,8 @@ public class BilletDAO {
         Billet billet = session.get(Billet.class, id);
         boolean success = false;
         if (billet != null) {
-            billet.setPrix(prix);
-            billet.setStatut(statut);
+           // billet.setPrix(prix);
+            //billet.setStatut(statut);
             Transaction tx = null;
             try {
                 tx = session.beginTransaction();
@@ -109,4 +110,32 @@ public class BilletDAO {
         session.close();
         return billets;
     }
+    public List<Billet> findByReservationId(int reservationId) {
+        List<Billet> billets = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM Billet b WHERE b.reservation.id = :reservationId";
+            billets = session.createQuery(hql, Billet.class)
+                             .setParameter("reservationId", reservationId)
+                             .list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return billets;
+    }
+
+    public List<Billet> findByReservationIdWithDetails(int reservationId) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery(
+                "SELECT b FROM Billet b " +
+                "JOIN FETCH b.reservation r " +
+                "LEFT JOIN FETCH r.voyage v " +
+                "LEFT JOIN FETCH r.utilisateur u " +
+                "LEFT JOIN FETCH v.trajet t " +
+                "WHERE r.id = :resId", Billet.class)
+                .setParameter("resId", reservationId)
+                .getResultList();
+        }
+    }
+
+
 }

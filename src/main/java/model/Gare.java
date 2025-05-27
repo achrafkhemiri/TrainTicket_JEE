@@ -43,4 +43,12 @@ public class Gare {
     public void setVille(String ville) {
         this.ville = ville;
     }
+
+	@Override
+	public String toString() {
+		return  nom ;
+	}
+    
+    
+    
 }

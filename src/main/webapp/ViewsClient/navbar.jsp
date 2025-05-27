@@ -123,8 +123,15 @@
 
 		<li><a href="${pageContext.request.contextPath}/ViewsClient/editProfile.jsp"><i
 				class="fas fa-user"></i> Profile</a></li>
+				
+	<li><a href="${pageContext.request.contextPath}/ReservationController?action=mesReservations"><i class="fas fa-ticket-alt"></i> Mes Réservations</a></li>
+				
+				
 		<li><a href="${pageContext.request.contextPath}/LogoutController"
 			class="logout-link"> <i class="fas fa-sign-out-alt"></i><span>Deconnexion</span>
 		</a></li>
+		
+		
+		
 	</ul>
 </div>

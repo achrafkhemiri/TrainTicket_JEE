@@ -70,5 +70,14 @@ public class Trajet {
         this.garesDePassage = garesDePassage;
     }
 
+	@Override
+	public String toString() {
+		return "Trajet [id=" + id + ", depart=" + depart + ", arrivee=" + arrivee + ", garesDePassage=" + garesDePassage
+				+ "]";
+	}
+
     // Getters and Setters
+    
+    
+    
 }

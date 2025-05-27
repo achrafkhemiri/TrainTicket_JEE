@@ -1,5 +1,6 @@
 package controller;
  
+import dao.BilletDAO;
 import dao.ReservationDAO;
 import dao.VoyageDAO;
 
@@ -7,11 +8,15 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
+
+import model.Billet;
 import model.Reservation;
+import model.Utilisateur;
 import model.Voyage;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 @WebServlet("/ReservationController")
 public class ReservationController extends HttpServlet {
@@ -20,30 +25,82 @@ public class ReservationController extends HttpServlet {
     private VoyageDAO voyageDAO = new VoyageDAO();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Reservation> reservations = reservationDAO.findAll();
-        request.setAttribute("listReservation", reservations);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("ViewsClient/reservationView.jsp");
-        rd.forward(request, response);
+        String action = request.getParameter("action");
+
+        if ("form".equals(action)) {
+        	int voyageId = Integer.parseInt(request.getParameter("voyageId"));
+        	Voyage voyage = voyageDAO.findByIdd(voyageId);
+
+
+            // Simuler un utilisateur connecté (à remplacer par session)
+            Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
+
+            request.setAttribute("voyage", voyage);
+            request.setAttribute("utilisateur", utilisateur);
+            request.setAttribute("dateReservation", new java.util.Date());
+
+            RequestDispatcher rd = request.getRequestDispatcher("ViewsClient/formReservation.jsp");
+            rd.forward(request, response);
+        } else if ("mesReservations".equals(action)) {
+            Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
+
+            if (utilisateur != null) {
+                List<Reservation> reservations = reservationDAO.findByUtilisateur(utilisateur);
+                request.setAttribute("mesReservations", reservations);
+                RequestDispatcher rd = request.getRequestDispatcher("ViewsClient/mesReservations.jsp");
+                rd.forward(request, response);
+            } 
+        }
+
     }
 
    
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int voyageId = Integer.parseInt(request.getParameter("voyageId"));
-        String nom = request.getParameter("nomClient");
-        String email = request.getParameter("email");
-        int nbPlaces = Integer.parseInt(request.getParameter("nbPlaces"));
+        //int voyageId = Integer.parseInt(request.getParameter("voyageId"));
+        int nbPersonnes = Integer.parseInt(request.getParameter("nbPersonnes"));
 
-        Voyage voyage = voyageDAO.findById(voyageId);
+       // Voyage voyage = voyageDAO.findById(voyageId);
+        
+        
+        int voyageId = Integer.parseInt(request.getParameter("voyageId"));
+        Voyage voyage = voyageDAO.findByIdd(voyageId);
+
+        Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
+        
+        
+        
+        if (voyage.getNbPlacesDispo() < nbPersonnes) {
+            response.sendRedirect("ReservationController?action=mesReservations&error=notEnoughPlaces");
+            return;
+        }
+        
+        int prixTotal = (int) (voyage.getPrixVoyage() * nbPersonnes);
+
+
+        voyage.setNbPlacesDispo(voyage.getNbPlacesDispo() - nbPersonnes);
+        voyageDAO.update(voyage); 
 
         Reservation res = new Reservation();
- /*       res.setNomClient(nom);
-        res.setEmail(email);
         res.setVoyage(voyage);
-        res.setNbPlaces(nbPlaces);
-        res.setDateReservation(LocalDateTime.now());
-*/
-        // save via DAO (ReservationDAO.create(res))
+        res.setUtilisateur(utilisateur);
+        res.setNbPersonnes(nbPersonnes);
+        res.setDateReservation(new Date());
+        res.setPrixTotal(prixTotal);
+        reservationDAO.create(res);
 
-        response.sendRedirect("ViewsClient/confirmation.jsp");
+        BilletDAO billetDAO = new BilletDAO();
+        for (int i = 0; i < nbPersonnes; i++) {
+            Billet billet = new Billet(new Date(), res);
+            billetDAO.create(billet);
+        }
+
+        //response.sendRedirect("ReservationController");
+        //response.sendRedirect("ReservationController?success=true");
+        response.sendRedirect("ReservationController?action=mesReservations&success=true");
+
+
     }
+
+
+
 }
