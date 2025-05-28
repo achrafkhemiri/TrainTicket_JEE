@@ -40,11 +40,21 @@
                     </div>
                 </c:if>
 
-<form action="ReservationController" method="get" class="reservation-btn">
-    <input type="hidden" name="action" value="form">
-    <input type="hidden" name="voyageId" value="${v.id}">
-    <input type="submit" value="Réserver">
-</form>
+<c:choose>
+    <c:when test="${not empty sessionScope.utilisateur}">
+        <form action="ReservationController" method="get" class="reservation-btn">
+            <input type="hidden" name="action" value="form">
+            <input type="hidden" name="voyageId" value="${v.id}">
+            <input type="submit" value="Réserver">
+        </form>
+    </c:when>
+
+    <c:otherwise>
+        <form action="${pageContext.request.contextPath}/login.jsp" method="get" class="reservation-btn">
+            <input type="submit" value="réserver">
+        </form>
+    </c:otherwise>
+</c:choose>
 
 
             </div>

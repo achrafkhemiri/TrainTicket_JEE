@@ -130,4 +130,10 @@ public class UtilisateurDAO {
 	            return result;
 
 	    }
+	    
+	    public Utilisateur getById(int id) {
+	        try (Session session = sessionFactory.openSession()) {
+	            return session.get(Utilisateur.class, id);
+	        }
+	    }
 	}

@@ -1,9 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 <head>
-    <title>Gestion des Utilisateurs</title>
+    <title>Réservations de l'utilisateur</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
@@ -119,56 +119,6 @@
             background-color: #f0f8ff;
         }
 
-        /* Form Styles */
-        form {
-            background: white;
-            padding: 20px 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-
-        form label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            color: #34495e;
-        }
-
-        form input[type="text"],
-        form input[type="email"],
-        form input[type="password"] {
-            width: 100%;
-            padding: 8px 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1em;
-        }
-
-        form button {
-            background-color: #3498db;
-            color: white;
-            padding: 10px 18px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        form button:hover {
-            background-color: #2980b9;
-        }
-
-        .message {
-            margin-bottom: 20px;
-            padding: 10px 15px;
-            background-color: #dff0d8;
-            color: #3c763d;
-            border-radius: 6px;
-            font-weight: 600;
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             body {
@@ -192,39 +142,35 @@
 <jsp:include page="sidebar.jsp" />
 
 <div class="main-content">
-     
+    <h2>Réservations de ${utilisateur.nom} ${utilisateur.prenom}</h2>
 
-    <h2>Liste des Utilisateurs</h2>
-
-
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Email</th>
-        <th>Rôle</th>
-        <th>Réservations</th> <!-- Nouvelle colonne -->
-    </tr>
-<c:forEach var="user" items="${listUtilisateur}">
-    <c:if test="${user.role == 'utilisateur'}">
+    <table>
         <tr>
-            <td>${user.id}</td>
-            <td>${user.nom}</td>
-            <td>${user.prenom}</td>
-            <td>${user.email}</td>
-            <td>${user.role}</td>
-            <td>
-                <a href="ReservationController?action=byUser&userId=${user.id}" title="Voir les réservations">
-                    <i class="fas fa-list"></i>
-                </a>
-            </td>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Voyage</th>
+            <th>Nb Personnes</th>
+            <th>Prix Total</th>
         </tr>
-    </c:if>
-</c:forEach>
-
-</table>
-
+        <c:forEach var="res" items="${reservations}">
+            <tr>
+                <td>${res.id}</td>
+                <td>${res.dateReservation}</td>
+                <td>
+                    <c:choose>
+                        <c:when test="${not empty res.voyage}">
+                            ${res.voyage.trajet.depart} → ${res.voyage.trajet.arrivee.nom}
+                        </c:when>
+                        <c:otherwise>
+                            <em>Aucun voyage</em>
+                        </c:otherwise>
+                    </c:choose>
+                </td>
+                <td>${res.nbPersonnes}</td>
+                <td>${res.prixTotal}</td>
+            </tr>
+        </c:forEach>
+    </table>
 </div>
 
 </body>

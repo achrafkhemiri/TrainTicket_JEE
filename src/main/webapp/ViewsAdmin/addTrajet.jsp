@@ -172,5 +172,37 @@
 
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const departSelect = document.getElementById('depart');
+        const arriveeSelect = document.getElementById('arrivee');
+
+        function updateArriveeOptions() {
+            const selectedDepart = departSelect.value;
+
+            Array.from(arriveeSelect.options).forEach(option => {
+                option.disabled = option.value === selectedDepart;
+            });
+
+            // Auto-select another option if the current selection is disabled
+            if (arriveeSelect.value === selectedDepart) {
+                for (let option of arriveeSelect.options) {
+                    if (!option.disabled) {
+                        arriveeSelect.value = option.value;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Initial call on page load
+        updateArriveeOptions();
+
+        // Update on change
+        departSelect.addEventListener('change', updateArriveeOptions);
+    });
+</script>
+
+
 </body>
 </html>

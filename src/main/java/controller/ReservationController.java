@@ -2,6 +2,7 @@ package controller;
  
 import dao.BilletDAO;
 import dao.ReservationDAO;
+import dao.UtilisateurDAO;
 import dao.VoyageDAO;
 
 import javax.servlet.RequestDispatcher;
@@ -23,6 +24,7 @@ public class ReservationController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private ReservationDAO reservationDAO = new ReservationDAO();
     private VoyageDAO voyageDAO = new VoyageDAO();
+    private UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -51,6 +53,19 @@ public class ReservationController extends HttpServlet {
                 rd.forward(request, response);
             } 
         }
+        
+        
+        if ("byUser".equals(request.getParameter("action"))) {
+            int userId = Integer.parseInt(request.getParameter("userId"));
+            
+            Utilisateur utilisateur = utilisateurDAO.getById(userId); // méthode à ajouter si elle n'existe pas
+            List<Reservation> reservations = reservationDAO.findByUtilisateur(utilisateur);
+            
+            request.setAttribute("reservations", reservations);
+            request.setAttribute("utilisateur", utilisateur);
+            request.getRequestDispatcher("ViewsAdmin/userReservations.jsp").forward(request, response);
+        }
+
 
     }
 

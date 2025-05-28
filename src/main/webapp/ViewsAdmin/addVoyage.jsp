@@ -183,5 +183,35 @@
     </table>
 
 </div>
+
+<script>
+document.querySelector('form').addEventListener('submit', function (e) {
+    const dateInput = document.querySelector('input[name="dateVoyage"]');
+    const heureDepartInput = document.querySelector('input[name="heureDepart"]');
+    const heureArriveeInput = document.querySelector('input[name="heureArrivee"]');
+
+    const dateVoyage = new Date(dateInput.value);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Ignore l'heure du jour courant
+
+    const heureDepart = heureDepartInput.value;
+    const heureArrivee = heureArriveeInput.value;
+
+    // Vérifie que la date du voyage est aujourd'hui ou après
+    if (dateVoyage < today) {
+        alert("La date du voyage ne peut pas être dans le passé.");
+        e.preventDefault();
+        return;
+    }
+
+    // Vérifie que l'heure de départ est <= heure d’arrivée
+    if (heureDepart && heureArrivee && heureDepart > heureArrivee) {
+        alert("L'heure de départ ne peut pas être après l'heure d’arrivée.");
+        e.preventDefault();
+        return;
+    }
+});
+</script>
+
 </body>
 </html>

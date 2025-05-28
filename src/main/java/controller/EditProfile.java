@@ -27,7 +27,7 @@ public class EditProfile extends HttpServlet {
 
 	        utilisateur.setNom(request.getParameter("nom"));
 	        utilisateur.setPrenom(request.getParameter("prenom"));
-	        utilisateur.setEmail(request.getParameter("email"));
+	        //utilisateur.setEmail(request.getParameter("email"));
 	        utilisateur.setMotDePasse(request.getParameter("motDePasse")); 
 
 	        utilisateurDAO.update(utilisateur);

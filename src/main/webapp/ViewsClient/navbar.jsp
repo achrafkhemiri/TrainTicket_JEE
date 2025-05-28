@@ -110,28 +110,36 @@
 		<i class="fas fa-train"></i> BilletExpress
 	</div>
 	<i class="fas fa-bars menu-toggle" onclick="toggleMenu()"></i>
-	<ul>
-		<li><a
-			href="${pageContext.request.contextPath}/ViewsClient/welcome.jsp"><i
-				class="fas fa-home"></i> Accueil</a></li>
-		<li><a href="${pageContext.request.contextPath}/ListeVoyage"><i
-				class="fas fa-list"></i> Voyages</a></li>
+<ul>
+	<li><a href="${pageContext.request.contextPath}/ViewsClient/welcome.jsp">
+		<i class="fas fa-home"></i> Accueil</a></li>
 
-		<li><a
-			href="${pageContext.request.contextPath}/ViewsClient/home.jsp"><i
-				class="fas fa-search"></i> Rechercher</a></li>
+	<li><a href="${pageContext.request.contextPath}/ListeVoyage">
+		<i class="fas fa-list"></i> Voyages</a></li>
 
-		<li><a href="${pageContext.request.contextPath}/ViewsClient/editProfile.jsp"><i
-				class="fas fa-user"></i> Profile</a></li>
-				
-	<li><a href="${pageContext.request.contextPath}/ReservationController?action=mesReservations"><i class="fas fa-ticket-alt"></i> Mes Réservations</a></li>
-				
-				
-		<li><a href="${pageContext.request.contextPath}/LogoutController"
-			class="logout-link"> <i class="fas fa-sign-out-alt"></i><span>Deconnexion</span>
-		</a></li>
+	<li><a href="${pageContext.request.contextPath}/ViewsClient/home.jsp">
+		<i class="fas fa-search"></i> Rechercher</a></li>
+
+	<c:choose>
 		
+		<c:when test="${not empty sessionScope.utilisateur}">
+			<li><a href="${pageContext.request.contextPath}/ReservationController?action=mesReservations">
+				<i class="fas fa-ticket-alt"></i> Mes Réservations</a></li>
+
+			<li><a href="${pageContext.request.contextPath}/ViewsClient/editProfile.jsp">
+				<i class="fas fa-user"></i> Profil</a></li>
+
+			<li><a href="${pageContext.request.contextPath}/LogoutController" class="logout-link">
+				<i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+		</c:when>
+
 		
-		
-	</ul>
+		<c:otherwise>
+			<li><a href="${pageContext.request.contextPath}/login.jsp">
+				<i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+		</c:otherwise>
+	</c:choose>
+</ul>
+
+
 </div>
