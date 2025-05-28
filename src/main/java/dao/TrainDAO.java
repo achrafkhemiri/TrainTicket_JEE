@@ -35,7 +35,7 @@ public class TrainDAO {
         return success;
     }
 
-    public Train findById(long id) {
+    public Train findById(int id) {
         Session session = sessionFactory.openSession();
         Train train = session.get(Train.class, id);
         session.close();

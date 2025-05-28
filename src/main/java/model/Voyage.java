@@ -3,11 +3,13 @@ package model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Voyage {
@@ -23,6 +25,13 @@ public class Voyage {
     private LocalTime heureArrivee;
     private double prixVoyage;
     private int nbPlacesDispo;
+    
+    @OneToOne
+    private Train train ;
+    
+    
+    
+    
 	public Trajet getTrajet() {
 		return trajet;
 	}
@@ -75,13 +84,25 @@ public class Voyage {
 	}
 	public Voyage() { 
 	}
-	public Voyage(LocalDate dateVoyage, LocalTime heureDepart, LocalTime heureArrivee, int nbPlacesDispo, double prixVoyage, Trajet trajet) {
+	public Voyage(LocalDate dateVoyage, LocalTime heureDepart, LocalTime heureArrivee, int nbPlacesDispo, double prixVoyage
+			, Trajet trajet , Train train) {
 	    this.dateVoyage = dateVoyage;
 	    this.heureDepart = heureDepart;
 	    this.heureArrivee = heureArrivee;
 	    this.nbPlacesDispo = nbPlacesDispo;
 	    this.prixVoyage = prixVoyage;
 	    this.trajet = trajet;
+	    this.train=train;
+	}
+	
+	
+	
+	
+	public Train getTrain() {
+		return train;
+	}
+	public void setTrain(Train train) {
+		this.train = train;
 	}
 	@Override
 	public String toString() {

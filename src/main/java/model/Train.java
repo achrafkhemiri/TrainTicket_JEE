@@ -9,6 +9,8 @@ public class Train {
 	 private int id;
     private String name;
     private String type;
+    
+    @Column(nullable = true)
     private String departureTime;
 
 

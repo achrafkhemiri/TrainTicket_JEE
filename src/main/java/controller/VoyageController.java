@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.TrainDAO;
 import dao.TrajetDAO;
 import dao.VoyageDAO;
+import model.Train;
 import model.Trajet;
 import model.Voyage;
 
@@ -24,6 +26,7 @@ public class VoyageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private VoyageDAO voyageDAO = new VoyageDAO();
     private TrajetDAO trajetDAO = new TrajetDAO();
+    private  TrainDAO trainDAO = new TrainDAO(); 
   
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,9 +40,13 @@ public class VoyageController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         List<Trajet> trajets = trajetDAO.findAll();   
         List<Voyage> voyages = voyageDAO.findAll();
+        List<Train> trains = trainDAO.findAll();
+	     
 
         req.setAttribute("trajets", trajets);
         req.setAttribute("listeVoyages", voyages);
+        req.setAttribute("trains", trains);
+
 
         req.getRequestDispatcher("/ViewsAdmin/addVoyage.jsp").forward(req, res);
     }
@@ -49,14 +56,20 @@ public class VoyageController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 	    int trajetId = Integer.parseInt(req.getParameter("trajetId"));  
+	    
+	    int trainId = Integer.parseInt(req.getParameter("trainId"));
+	    
+	    
 	    LocalDate dateVoyage = LocalDate.parse(req.getParameter("dateVoyage"));
 	    LocalTime heureDepart = LocalTime.parse(req.getParameter("heureDepart"));
 	    LocalTime heureArrivee = LocalTime.parse(req.getParameter("heureArrivee"));
 	    double prix = Double.parseDouble(req.getParameter("prixVoyage"));
 	    int nbPlaces = Integer.parseInt(req.getParameter("nbPlacesDispo"));
+        Train train = trainDAO.findById(trainId);
+
 
 	    Trajet trajet = trajetDAO.findById(trajetId);
-	    Voyage voyage = new Voyage(dateVoyage, heureDepart, heureArrivee, nbPlaces, prix, trajet);
+	    Voyage voyage = new Voyage(dateVoyage, heureDepart, heureArrivee, nbPlaces, prix, trajet,train);
 
 	    voyageDAO.create(voyage);
 	    res.sendRedirect("VoyageController");

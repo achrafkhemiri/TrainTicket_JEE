@@ -108,6 +108,15 @@
     <div id="gares-passage"></div>
 </div> 
 
+
+<label for="train">Train :</label>
+<select name="trainId" id="train" required>
+    <c:forEach var="t" items="${trains}">
+        <option value="${t.id}">${t.name}</option>
+    </c:forEach>
+</select>
+
+
         <script>
     const trajetsMap = {
         <c:forEach var="t" items="${trajets}" varStatus="status">
@@ -168,6 +177,8 @@
             <th>Heure Arrivée</th>
             <th>Prix</th>
             <th>Places</th>
+            <th>Train</th>
+            
         </tr>
         <c:forEach var="v" items="${listeVoyages}">
             <tr>
@@ -178,6 +189,7 @@
                 <td>${v.heureArrivee}</td>
                 <td>${v.prixVoyage} DT</td>
                 <td>${v.nbPlacesDispo}</td>
+                <td>${v.train.name}</td>
             </tr>
         </c:forEach>
     </table>

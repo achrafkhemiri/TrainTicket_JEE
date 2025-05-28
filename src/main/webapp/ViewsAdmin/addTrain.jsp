@@ -107,8 +107,11 @@
         <label for="type">Type :</label>
         <input type="text" id="type" name="type" required />
 
-        <label for="departureTime">Heure de départ :</label>
-        <input type="time" id="departureTime" name="departureTime" required />
+      <%-- Champ heure de départ désactivé temporairement
+<label for="departureTime">Heure de départ :</label>
+<input type="time" id="departureTime" name="departureTime" required />
+--%>
+      
 
         <input type="submit" value="Ajouter" />
     </form>
@@ -119,14 +122,15 @@
             <th>ID</th>
             <th>Nom</th>
             <th>Type</th>
-            <th>Heure de départ</th>
+           <%-- <th>Heure de départ</th>--%>
         </tr>
         <c:forEach var="train" items="${listTrain}">
             <tr>
                 <td>${train.id}</td>
                 <td>${train.name}</td>
                 <td>${train.type}</td>
-                <td>${train.departureTime}</td>
+                <%-- <td>${train.departureTime}</td> --%>
+
             </tr>
         </c:forEach>
     </table>
